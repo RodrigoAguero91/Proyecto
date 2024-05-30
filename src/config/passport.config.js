@@ -1,15 +1,19 @@
+import dotenv from 'dotenv'
 import passport from 'passport';
 import localStrategy from 'passport-local';
 import GithubStrategy from 'passport-github2';
 import UserModel from '../models/user.model.js';
 import { hasAdminCredentials } from "../public/js/authMiddleware.js";
 import bcrypt from 'bcryptjs';
-
 import logger from '../logger.js'
 
-// Datos de configuración de la estrategia de autenticación con Github
-const githubClientID = process.env.GITHUB_STRATEGY_CLIENT_ID;
-const githubClientSecret = process.env.GITHUB_STRATEGY_CLIENT_SECRET;
+
+
+dotenv.config()
+
+
+ 
+
 
 const initializePassport = () => {
 
@@ -91,9 +95,9 @@ const initializePassport = () => {
   }));
 
   passport.use('github', new GithubStrategy({
-    clientID: githubClientID,
-    clientSecret: githubClientSecret,
-    callbackURL: 'http://localhost:8080/api/sessions/githubcallback'
+    clientID: "Iv1.1a2cb61acd254ae2",
+    clientSecret:"eb0f89659faa6b5ff4d94723bab432dcbf02073b",
+    callbackURL: 'http://localhost:8080/api/sessions/callback'
   }, async (accessToken, refreshToken, profile, done) => {
     logger.debug(profile)
     try {

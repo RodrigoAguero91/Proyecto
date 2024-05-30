@@ -17,18 +17,18 @@ import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import passport from 'passport'
 import initializePassport from './config/passport.config.js'
-
+import dotenv from 'dotenv'
 import errorHandler from './middlewares/error.middleware.js'
 import logger from './logger.js'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUiExpress from 'swagger-ui-express'
-import dotenv from 'dotenv'
+
 
 
 dotenv.config()
 
 
-
+const PORT=8080
 const app = express(); 
 
 app.use(express.json());
@@ -60,8 +60,8 @@ app.set('view engine', 'handlebars');
 
 // Inicialización del servidor
 try {
-  await mongoose.connect(process.env.MONGO_URL) // conecta con la base de datos
-  const serverHttp = app.listen(process.env.PORT, () => logger.info('server up'))  
+  await mongoose.connect("mongodb+srv://aguerorodrigo91:aguerorodrigo91@proyectocoderhouse.pxcbns7.mongodb.net/Ecommerce") // conecta con la base de datos
+  const serverHttp = app.listen(PORT, () => logger.info(`conect al ${PORT}`))  
   const io = new Server(serverHttp) 
   app.use((req, res, next) => {
     req.io = io;
