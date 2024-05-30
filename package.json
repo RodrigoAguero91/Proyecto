@@ -1,0 +1,41 @@
+{
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "-": "^0.0.1",
+    "@faker-js/faker": "^8.4.1",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "commander": "^12.1.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.18.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.0",
+    "mongoose-paginate-v2": "^1.8.1",
+    "nanoid": "^5.0.7",
+    "nodemailer": "^6.9.13",
+    "nodemon": "^3.1.1",
+    "passport": "^0.7.0",
+    "passport-github2": "^0.1.12",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "process": "^0.11.10",
+    "socket.io": "^4.7.5",
+    "supertest": "^7.0.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui": "^5.17.14",
+    "swagger-ui-express": "^5.0.0",
+    "winston": "^3.13.0",
+    "y": "^0.3.2"
+  }
+}
