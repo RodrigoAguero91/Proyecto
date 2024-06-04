@@ -7,8 +7,8 @@ export const getbill = async (req, res) => {
     let configMail = {
         service: 'gmail',
         auth: {
-            user:process.env.ADMIN_EMAIL,
-            pass: process.env.ADMIN_PASSWORD
+            user:'ezequielrodrigo778@gmail.com',
+            pass: '12345a12345'
         }
     }
     let transporter = nodemailer.createTransport(configMail)
