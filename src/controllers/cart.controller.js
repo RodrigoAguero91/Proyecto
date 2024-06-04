@@ -25,7 +25,7 @@ export const readCartController = async (req, res) => {
       return;
     }
 
-    // Obtener la información completa de los productos utilizando el populate
+    
     const productsWithInfo = await Product.populate(cart, {
       path: 'products.product',
       model: 'products',
@@ -33,7 +33,7 @@ export const readCartController = async (req, res) => {
 
     res.status(200).json(productsWithInfo);
 
-    // res.status(200).json(cart.products);
+    
   } catch (error) {
     logger.error('Error al obtener los productos del carrito:', error);
     res.status(500).json({ error: 'Error en el servidor' });
@@ -60,7 +60,7 @@ export const addProductCartController = async (req, res) => {
     const userId = req.session.user._id; // Obtener el ID del usuario de la sesión
     const user = await User.findById(userId);
 
-    //const product = await Product.findById(productId).lean().exec();
+    
     const product = await ProductService.getById(productId)
 
     if (!product) {
@@ -74,6 +74,11 @@ export const addProductCartController = async (req, res) => {
       res.status(404).json({ error: 'Carrito no encontrado' });
       return;
     }
+
+    if (product.owner == user.email && user.role == 'premium'){
+      res.status(404).json({ error: 'No puedes agregar un producto tuyo al carrito' });
+      return;
+    } 
 
     const existingProductIndex = cart.products.findIndex(
       (item) => item.product.toString() === productId

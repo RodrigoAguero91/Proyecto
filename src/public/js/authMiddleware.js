@@ -1,6 +1,6 @@
 
 
-// authMiddleware.js
+
 const isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
       next();
@@ -9,8 +9,8 @@ const isAuthenticated = (req, res, next) => {
     }
   };
   
-  const isAdmin = (req, res, next) => {
-    if (req.isAuthenticated() && req.user.role === 'admin') {
+  const isAdminOrPremium = (req, res, next) => {
+    if (req.isAuthenticated() && (req.user.role === 'admin' || req.user.role === 'premium')) {
       next();
     } else {
       res.status(403).json({ message: 'Acceso no autorizado.' });
@@ -22,4 +22,4 @@ const isAuthenticated = (req, res, next) => {
     return email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD;
   };
   
-  export { isAuthenticated, isAdmin, hasAdminCredentials };
+  export { isAuthenticated, isAdminOrPremium, hasAdminCredentials };

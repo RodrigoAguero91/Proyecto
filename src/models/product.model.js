@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 import mongoosePaginate from 'mongoose-paginate-v2';
 
-//const productsCollection = 'products';
-
 const productSchema = new mongoose.Schema({
     title: { type: String, required: true},
     description: { type: String, required: true},
@@ -12,6 +10,7 @@ const productSchema = new mongoose.Schema({
     stock: { type: Number, required: true},
     category: { type: String, required: true},
     thumbnail: { type: [String], default: [] },
+    owner: { type: String, default: 'admin' },
 });
 
 mongoose.set('strictQuery', false)

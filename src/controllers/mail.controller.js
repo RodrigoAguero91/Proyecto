@@ -1,11 +1,13 @@
 import nodemailer from 'nodemailer'
+import dotenv from "dotenv"
 
+dotenv.config()
 
 export const getbill = async (req, res) => {
     let configMail = {
         service: 'gmail',
         auth: {
-            user: process.env.ADMIN_EMAIL,
+            user:process.env.ADMIN_EMAIL,
             pass: process.env.ADMIN_PASSWORD
         }
     }

@@ -1,4 +1,6 @@
 import { faker } from '@faker-js/faker'
+import bcrypt from 'bcryptjs'
+
 
 export const generateProduct = () => {
     return {
@@ -13,3 +15,17 @@ export const generateProduct = () => {
         thumbnail: [faker.image.url()],
     };
 };
+
+export const generateRandomString = (num) => {
+    return [...Array(num)].map(() => {
+        const randomNum = ~~(Math.random() * 36);
+        return randomNum.toString(36);
+    })
+        .join('')
+        .toUpperCase();
+}
+
+export const createHash = password => {
+    const saltRounds = 10;
+    return bcrypt.hashSync(password, saltRounds)
+}

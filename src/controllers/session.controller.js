@@ -2,6 +2,10 @@ import passport from 'passport';
 import Cart from '../models/cart.model.js'
 import UserDTO from '../dto/User.js'
 import logger from '../logger.js'
+import UserModel from '../models/user.model.js'
+import nodemailer from 'nodemailer'
+import { generateRandomString, createHash } from '../utils.js'
+import UserPasswordModel from '../models/user-password.model.js'
 
 export const createUserController = async (req, res, next) => {
   passport.authenticate('register', async (err, user, info) => {
@@ -81,4 +85,7 @@ export const readInfoUserController = (req, res) => {
     // Si el usuario no está autenticado, devuelve un error 401 (No autorizado)
     res.status(401).json({ error: 'No autorizado' });
   }
+
 }
+
+ 
