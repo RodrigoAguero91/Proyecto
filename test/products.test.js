@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import Product from '../src/dao/product.mongo.dao.js';
 import Assert from 'assert';
 
-import config from '../src/config/config.js'
+
 import { faker } from '@faker-js/faker'
 
 
