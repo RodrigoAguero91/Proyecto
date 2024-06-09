@@ -6,9 +6,9 @@ import config from '../src/config/config.js'
 import { faker } from '@faker-js/faker'
 
 
-const mongoURLTest = config.mongoURLTest
 
-mongoose.connect(mongoURLTest)
+
+mongoose.connect('mongodb+srv://aguerorodrigo91:aguerorodrigo91@proyectocoderhouse.pxcbns7.mongodb.net/Ecommerce')
 
 const assert = Assert.strict
 
