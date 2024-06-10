@@ -1,7 +1,7 @@
-import chai from 'chai'
+import chai  from 'chai'
 import supertest from 'supertest'
 
-const expect = chai.expect
+const  expect = chai.expect
 const requester = supertest('http://localhost:8080')
 
 describe('Testing de E-commerce de Backend', () => {
@@ -10,3 +10,4 @@ describe('Testing de E-commerce de Backend', () => {
         expect(result.status).to.equal(200)
     })
 })
+
