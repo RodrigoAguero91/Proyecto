@@ -13,3 +13,5 @@ describe('Testing de E-commerce de Backend', () => {
         expect(typeof responseBody).to.equal('string')
     })
 })
+
+export default chai

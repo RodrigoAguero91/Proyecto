@@ -30,7 +30,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['admin', 'usuario'],
         default: 'usuario'
+    },
+    documents: [
+        {
+            name: String,
+            reference: String
+        }
+    ],
+    status: {
+        type: String,
+        enum: ['pending', 'active'],
+        default: 'pending'
+    },
+    last_connection: {
+        type: Date
     }
+
 });
 
 const User = mongoose.model('User', userSchema);

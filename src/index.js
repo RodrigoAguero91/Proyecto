@@ -22,7 +22,7 @@ import errorHandler from './middlewares/error.middleware.js'
 import logger from './logger.js'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUiExpress from 'swagger-ui-express'
-
+import multer from 'multer'
 
 
 dotenv.config()
@@ -36,6 +36,26 @@ app.use(express.json());
 app.use(errorHandler)
 app.use(express.static('./src/public')); 
 app.use(express.urlencoded({ extended: true }))
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      const { type } = req.body;
+      if (type === 'profile') {
+          cb(null, 'src/public/uploads/profiles');
+      } else if (type === 'product') {
+          cb(null, 'src/public/uploads/products');
+      } else if (type === 'document') {
+          cb(null, 'src/public/uploads/documents');
+      } else {
+          cb(null, 'src/public/uploads/other');
+      }
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage });
 
 // configuracion de la sesion
 app.use(session({
@@ -98,7 +118,7 @@ try {
   app.use('/chat', chatRouter); 
   app.use('/products', viewsRouter); 
   app.use('/mockingproducts', mockingRouter); 
-  app.use('/api/users', apiUsersRouter); 
+  app.use('/api/users', upload.array('files', 20), apiUsersRouter); 
   app.use('/api/products', productsRouter); 
   app.use('/api/carts', cartsRouter); 
   app.use('/api/sessions', sessionsRouter); 
