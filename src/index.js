@@ -81,7 +81,7 @@ app.set('view engine', 'handlebars');
 // Inicialización del servidor
 try {
   await mongoose.connect("mongodb+srv://aguerorodrigo91:aguerorodrigo91@proyectocoderhouse.pxcbns7.mongodb.net/Ecommerce") // conecta con la base de datos
-  const serverHttp = app.listen(PORT, () => logger.info(`conect al ${PORT}`))  
+  const serverHttp = app.listen(PORT, () => logger.info('server up'))  
   const io = new Server(serverHttp) 
   app.use((req, res, next) => {
     req.io = io;
@@ -165,6 +165,10 @@ try {
     socket.on('productList', async (data) => {
       io.emit('updatedProducts', data) 
     })
+    socket.on('userList', async (data) => {
+      io.emit('updatedUserList', data) 
+    }) 
+    
   }) 
 } catch (error) {
   logger.error(error.message)

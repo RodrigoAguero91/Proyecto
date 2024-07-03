@@ -46,3 +46,11 @@ export const viewsUserForgetPasswordController = (req, res) => {
 
     res.render('forget-password');
 }
+
+export const viewUserStateController = async (req, res) => {
+    const users = await UserModel.find().lean().exec();
+
+    const filteredUsers = users.filter(user => user.role !== "admin");
+    
+    res.render('users-state', {filteredUsers});
+}

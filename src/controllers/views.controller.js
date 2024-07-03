@@ -54,7 +54,7 @@ export const readViewsProductController = async (req, res) => {
       cart: req.session.user.cart,
     };
 
-    const userAdminControl = req.session.user.email != config.adminEmail ? true : false;
+    const userAdminControl = req.session.user.email !=  'rodrigo@gmail.com' ? true : false;
 
     if (result === null) {
       return res.status(404).json({ status: 'error', error: 'Product not found' });
